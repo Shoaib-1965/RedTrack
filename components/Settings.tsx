@@ -1,12 +1,12 @@
-
 import React, { useState } from 'react';
 import type { CycleDataContextType, UserSettings } from '../types';
 
 interface SettingsProps {
   cycleDataContext: CycleDataContextType;
+  onLogout: () => void;
 }
 
-const Settings: React.FC<SettingsProps> = ({ cycleDataContext }) => {
+const Settings: React.FC<SettingsProps> = ({ cycleDataContext, onLogout }) => {
   const { settings, updateSettings } = cycleDataContext;
   const [localSettings, setLocalSettings] = useState<UserSettings>(settings);
   const [saved, setSaved] = useState(false);
@@ -27,7 +27,7 @@ const Settings: React.FC<SettingsProps> = ({ cycleDataContext }) => {
     const dataStr = JSON.stringify({settings: cycleDataContext.settings, data: cycleDataContext.data}, null, 2);
     const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
     
-    const exportFileDefaultName = 'blossom_data.json';
+    const exportFileDefaultName = 'cycleease_data.json';
     
     const linkElement = document.createElement('a');
     linkElement.setAttribute('href', dataUri);
@@ -39,10 +39,11 @@ const Settings: React.FC<SettingsProps> = ({ cycleDataContext }) => {
     <div className="space-y-8">
       <header>
         <h1 className="text-2xl font-bold text-text-primary">Settings</h1>
-        <p className="text-text-secondary">Personalize your experience.</p>
+        <p className="text-text-secondary">Personalize your profile and experience.</p>
       </header>
 
       <div className="bg-white p-6 rounded-2xl shadow-md space-y-6">
+        <h2 className="text-lg font-semibold text-text-primary border-b pb-2">Profile</h2>
         <div>
           <label htmlFor="userName" className="block text-sm font-medium text-gray-700">Your Name</label>
           <input
@@ -54,7 +55,10 @@ const Settings: React.FC<SettingsProps> = ({ cycleDataContext }) => {
             className="mt-1 block w-full px-3 py-2 bg-gray-100 border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
-        
+      </div>
+
+      <div className="bg-white p-6 rounded-2xl shadow-md space-y-6">
+        <h2 className="text-lg font-semibold text-text-primary border-b pb-2">Cycle Settings</h2>
         <div>
           <label htmlFor="cycleLength" className="block text-sm font-medium text-gray-700">Average Cycle Length (days)</label>
           <input
@@ -78,8 +82,8 @@ const Settings: React.FC<SettingsProps> = ({ cycleDataContext }) => {
             className="mt-1 block w-full px-3 py-2 bg-gray-100 border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
-
-        <div className="flex justify-end items-center space-x-4">
+        
+        <div className="flex justify-end items-center space-x-4 pt-2">
             {saved && <span className="text-sm text-accent">Saved!</span>}
             <button
                 onClick={handleSave}
@@ -91,11 +95,16 @@ const Settings: React.FC<SettingsProps> = ({ cycleDataContext }) => {
       </div>
 
       <div className="bg-white p-6 rounded-2xl shadow-md space-y-4">
-         <h3 className="font-semibold text-text-primary">Data Management</h3>
-         <p className="text-sm text-text-secondary">Your data is stored only on this device. You can export it for your own records or to transfer to another device.</p>
-         <button onClick={exportData} className="bg-accent text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-green-500 transition-colors">
-            Export My Data
-         </button>
+         <h3 className="font-semibold text-text-primary">Data & Account</h3>
+         <p className="text-sm text-text-secondary">Export your data or log out of your account.</p>
+         <div className="flex space-x-4">
+            <button onClick={exportData} className="bg-accent text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-green-500 transition-colors">
+                Export Data
+            </button>
+            <button onClick={onLogout} className="bg-gray-500 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-gray-600 transition-colors">
+                Log Out
+            </button>
+         </div>
       </div>
 
     </div>

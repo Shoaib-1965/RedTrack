@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { DEFAULT_PIN } from '../constants';
 
@@ -50,7 +49,7 @@ const PinLockScreen: React.FC<PinLockScreenProps> = ({ onUnlock }) => {
     <div className="bg-background min-h-screen flex flex-col justify-between items-center p-8 max-w-md mx-auto">
       <div className="text-center mt-16">
         <ion-icon name="sparkles-outline" class="text-6xl text-primary"></ion-icon>
-        <h1 className="text-2xl font-bold text-text-primary mt-4">Welcome to Blossom</h1>
+        <h1 className="text-2xl font-bold text-text-primary mt-4">Welcome to CycleEase</h1>
         <p className="text-text-secondary mt-2">Enter your PIN to continue</p>
         <p className="text-text-secondary text-xs mt-1">(Default PIN is {DEFAULT_PIN})</p>
       </div>

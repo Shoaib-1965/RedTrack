@@ -1,5 +1,5 @@
 {
-  "name": "Blossom - Cycle Tracker",
-  "description": "A friendly and beautiful mobile-first web app for girls to track, record, and manage their menstrual cycles with features for logging periods, symptoms, moods, and viewing insightful reports.",
+  "name": "CycleEase",
+  "description": "CycleEase makes tracking your menstrual cycle easy and insightful. Log periods, symptoms, and moods to understand your body better.",
   "requestFramePermissions": []
 }

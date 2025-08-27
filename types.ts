@@ -51,7 +51,7 @@ export interface ModalProps {
     title: string;
 }
 
-// FIX: Add type definition for the `ion-icon` web component to fix JSX errors.
+// Fix: Add type definition for the `ion-icon` web component to fix JSX errors.
 declare global {
   namespace JSX {
     interface IntrinsicElements {

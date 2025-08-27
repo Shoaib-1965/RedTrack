@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Calendar from './Calendar';
 import DayDetailModal from './DayDetailModal';
@@ -9,7 +8,7 @@ interface DashboardProps {
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ cycleDataContext }) => {
-  const { settings, prediction, data } = cycleDataContext;
+  const { prediction } = cycleDataContext;
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
 
   const handleDayClick = (date: string) => {
@@ -33,20 +32,8 @@ const Dashboard: React.FC<DashboardProps> = ({ cycleDataContext }) => {
   
   const daysUntil = getDaysUntilNextPeriod();
 
-  const getGreeting = () => {
-    const hour = new Date().getHours();
-    if (hour < 12) return `Good Morning, ${settings.userName}!`;
-    if (hour < 18) return `Good Afternoon, ${settings.userName}!`;
-    return `Good Evening, ${settings.userName}!`;
-  }
-  
   return (
     <div className="flex flex-col space-y-6">
-      <header>
-        <h1 className="text-2xl font-bold text-text-primary">{getGreeting()}</h1>
-        <p className="text-text-secondary">Here's your cycle summary.</p>
-      </header>
-      
       <div className="bg-gradient-to-br from-primary to-pink-400 text-white p-6 rounded-2xl shadow-lg flex items-center justify-between">
         <div>
           <p className="text-lg">Next Period In</p>
